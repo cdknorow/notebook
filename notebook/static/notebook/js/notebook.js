@@ -61,7 +61,7 @@ define(function (require) {
         this.keyboard_manager = options.keyboard_manager;
         this.contents = options.contents;
         this.save_widget = options.save_widget;
-        this.cell_side='right';
+        this.cell_style="width:100%;";
 
         this.tooltip = new tooltip.Tooltip(this.events);
         this.ws_url = options.ws_url;
@@ -1119,6 +1119,13 @@ define(function (require) {
         }
     };
 
+    Notebook.prototype.set_cell_style = function(cell_style){
+        if (cell_style == "right")
+                {this.cell_style = "float:right; width:50%;";}
+        else if (cell_style == "left") 
+                {this.cell_style = "float:left; width:50%;";} 
+        else {this.cell_style ="width:100%;";}
+    }
     /**
      * Insert a cell so that after insertion the cell is at given index.
      *
@@ -1135,8 +1142,8 @@ define(function (require) {
      */
     Notebook.prototype.insert_cell_at_index = function(type, index){
 
-        if (this.cell_side == 'right'){this.cell_side = 'left';}   
-        else{this.cell_side ='right';}
+        if (this.cell_style == "float:right; width:50%;"){this.cell_style = "float:left; width:50%;";}   
+        else if (this.cell_style == "float:left; width:50%;"){this.cell_style ="float:left; width:50%;"}
 
         var ncells = this.ncells();
         index = Math.min(index, ncells);
@@ -1166,7 +1173,7 @@ define(function (require) {
                 keyboard_manager: this.keyboard_manager, 
                 notebook: this,
                 tooltip: this.tooltip,
-                cell_side: this.cell_side
+                cell_style: this.cell_style
             };
             switch(type) {
             case 'code':

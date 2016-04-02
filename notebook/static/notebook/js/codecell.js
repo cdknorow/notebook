@@ -95,7 +95,7 @@ define([
         this.events = options.events;
         this.tooltip = options.tooltip;
         this.config = options.config;
-        this.cell_side = options.cell_side;
+        this.cell_style = options.cell_style;
         this.class_config = new configmod.ConfigWithDefaults(this.config,
                                         CodeCell.config_defaults, 'CodeCell');
 
@@ -112,7 +112,7 @@ define([
             config: $.extend({}, CodeCell.options_default), 
             keyboard_manager: options.keyboard_manager, 
             events: this.events,
-            cell_side:this.cell_side}]);
+            cell_style:this.cell_style}]);
 
         // Attributes we want to override in this subclass.
         this.cell_type = "code";
@@ -155,7 +155,7 @@ define([
         var that = this;
 
         var cell =  $('<div></div>').addClass('cell code_cell');
-        cell.attr({'tabindex':'2','style':"float:"+this.cell_side+"; width:50%;"});
+        cell.attr({'tabindex':'2','style':this.cell_style});
 
         var input = $('<div></div>').addClass('input');
         this.input = input;

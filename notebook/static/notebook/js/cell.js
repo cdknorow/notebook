@@ -48,7 +48,7 @@ define([
         options = options || {};
         this.keyboard_manager = options.keyboard_manager;
         this.events = options.events;
-        this.cell_side = options.cell_side
+        this.cell_style = options.cell_style
         var config = utils.mergeopt(Cell, options.config);
         // superclass default overwrite our default
         
